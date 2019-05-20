@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+<p>
+<form class="row" method="GET">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">Go!</button>
+            </span>
+            <input tupe="text" class="form-control" placeholder="Search for..." name="q"
+                   value="{{ request.args.get('q', '') }}">
+        </div><!-- /input-group -->
+    </div>
+</form>
+</p>
+<hr>
+
+
+{% for author in owners%}
+
+<h4>{{ author.ownername }}</h4> {{ author.body }} <br>
+
+{% for b in author.subscriptions %}
+    "{{b.bookname}}" <br>
+{% endfor %}
+
+<hr>
+{% endfor %}
+
+
+
+<h2> Book(s):</h2>
+    {% for book in books%}
+        "{{ book.bookname }}"&nbsp; &nbsp; &nbsp;
+    {% endfor %}
+
+
+{% endblock %}
+

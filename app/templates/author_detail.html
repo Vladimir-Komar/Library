@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+    <h1> {{ owner.ownername }} </h1>
+    {{ owner.body }}
+        <br>
+        <h4>
+             <a class="label label-danger" href="{{ url_for('delete', slug=owner.slug) }}" > Delete author</a>
+        </h4>
+    <hr />
+    <h3>All books of the author:</h3>
+    {% for book in books %}
+
+      Name (
+        <a class="disabled" href="{{ url_for('bookdel', slug=owner.slug, bookname=book.bookname) }}" > Remove</a>
+                    )
+        : {{ book.bookname }}
+        <br>
+    {% endfor %}
+
+{% endblock %}
+
